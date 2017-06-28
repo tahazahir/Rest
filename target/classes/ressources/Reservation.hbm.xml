@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+<class name="ma.restaurant.models.Reservation" table="RESERVATION">
+<id name="idReservation" column="ID_RESERVATION">
+<generator class="native">
+</generator>
+</id>
+<property name="dateReservation" column="DATE_RESERVATION"></property>
+<property name="temps" column="TEMPS"></property>
+<property name="nbrPersonne" column="NBR_PERSONNE"></property>
+
+
+<set name="plats" table="LIGNE_COMMANDE">
+<key column="ID_PERSONNE"></key>
+
+<many-to-many class="ma.restaurant.models.Plat" column="ID_PLAT"></many-to-many>
+</set>
+
+<many-to-one name="factures" column="ID_FACTURE" class="ma.restaurant.models.Facture"></many-to-one>
+<many-to-one name="clients" column="ID_PERSONNE" class="ma.restaurant.models.Client"></many-to-one>
+<many-to-one name="tables" column="ID_TABLE" class="ma.restaurant.models.Table"></many-to-one>
+</class>
+  <sql-query name="tableLibre">
+  <return alias="RESERVATION" class="ma.restaurant.models.Reservation"></return>
+  <![CDATA[select idTable from Reservation s where s.DATE_RESERVATION = :dateReservation and s.TEMPS= :temps]]>
+  </sql-query>
+   <sql-query name="tableLibreR">
+  <return alias="RESERVATION" class="ma.restaurant.models.Reservation"></return>
+  <![CDATA[select * from Reservation s where s.TEMPS = :temps]]>
+  </sql-query>
+</hibernate-mapping>

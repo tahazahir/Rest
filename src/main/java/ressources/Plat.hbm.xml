@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+<class name="ma.restaurant.models.Plat" table="PLAT">
+<id name="idPlat" column="ID_PLAT">
+<generator class="native">
+</generator>
+</id>
+<property name="genre" column="GENRE"></property>
+<property name="designation" column="DESIGNATION"></property>
+<property name="prix" column="PRIX"></property>
+<property name="photo" column="PHOTO"></property>
+
+<set name="reservations" table="LIGNE_COMMANDE" inverse="true" lazy="false">
+<key column="ID_PLAT"></key>
+
+<many-to-many class="ma.restaurant.models.Reservation" column="ID_RESERVATION"></many-to-many>
+</set>
+</class>
+  
+</hibernate-mapping>

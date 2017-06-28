@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+ <class name="ma.restaurant.models.Table" table="TABLES">
+ <id name="idTable" column="ID_TABLE">
+ <generator class="native"></generator>
+ </id>
+ <property name="numTable" column="NUM_TABLE"></property>
+  <property name="capacite" column="CAPACITE"></property>
+    <property name="etat" not-null="true">
+    <column sql-type="BOOLEAN" not-null="true" name="etat" />
+    </property>
+   
+    
+  <many-to-one name="serveurs" column="ID_PERSONNE" class="ma.restaurant.models.Serveur"></many-to-one> 
+ </class>
+  
+</hibernate-mapping>

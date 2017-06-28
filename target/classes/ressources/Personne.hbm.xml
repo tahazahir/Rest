@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<class name="ma.restaurant.models.Personne" table="PERSONNE">
+<id name="idPersonne" column="ID_PERSONNE"> 
+	<generator class="native"></generator>
+</id>
+<property name="nom" column="NOM"></property>
+<property name="prenom" column="PRENOM"></property>
+<property name="tel" column="TEL"></property>
+<property name="adresse" column="ADRESSE"></property>
+<property name="mdp" column="MDP"></property>
+<property name="email" column="EMAIL"></property>
+
+<joined-subclass name="ma.restaurant.models.Serveur" table="SERVEUR">
+<key column="ID_PERSONNE"></key>
+<property name="salaire" column="SALAIRE"></property>
+</joined-subclass>
+
+<joined-subclass name="ma.restaurant.models.Gerant" table="GERANT">
+<key column="ID_PERSONNE"></key>
+<property name="salaire" column="SALAIRE"></property>
+</joined-subclass>
+
+
+<joined-subclass name="ma.restaurant.models.Client" table="CLIENT">
+<key column="ID_PERSONNE"></key>
+
+</joined-subclass>
+
+</class>
+
+  
+</hibernate-mapping>
